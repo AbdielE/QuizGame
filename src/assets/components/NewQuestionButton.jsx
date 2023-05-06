@@ -12,6 +12,7 @@ const NewQuestionButton = ({listQuestions,setListQuestions}) => {
               id="question" 
               name="question" 
               placeholder="Question"
+              maxlength="200"
             />
             <input 
               class="swal2-input" 
@@ -19,6 +20,7 @@ const NewQuestionButton = ({listQuestions,setListQuestions}) => {
               id="answer1" 
               name="answer1" 
               placeholder="Answer1"
+              maxlength="100"
             />
             <input 
               class="swal2-input" 
@@ -26,6 +28,7 @@ const NewQuestionButton = ({listQuestions,setListQuestions}) => {
               id="answer2" 
               name="answer2" 
               placeholder="Answer2"
+              maxlength="100"
             />
             <input 
               class="swal2-input" 
@@ -33,7 +36,13 @@ const NewQuestionButton = ({listQuestions,setListQuestions}) => {
               id="answer3" 
               name="answer3" 
               placeholder="Answer3"
+              maxlength="100"
             />
+            <select name="answerc" id="answerc" class="swal2-select" >
+              <option value="answer1">Answer 1</option>
+              <option value="answer2">Answer 2</option>
+              <option value="answer3">Answer 3</option>
+            </select>
           `,
           confirmButtonText: "Add Question",
           showCancelButton: true,
@@ -44,14 +53,15 @@ const NewQuestionButton = ({listQuestions,setListQuestions}) => {
             const answer1 = Swal.getPopup().querySelector("#answer1").value;
             const answer2 = Swal.getPopup().querySelector("#answer2").value;
             const answer3 = Swal.getPopup().querySelector("#answer3").value;
-            if(!question || !answer1 || !answer2 || !answer3){
+            const answerc = Swal.getPopup().querySelector("#answerc").value;
+            if(!question || !answer1 || !answer2 || !answer3 || !answerc){
               Swal.showValidationMessage("Please enter full information.");
             }
-            return {question, answer1, answer2, answer3};
+            return {question, answer1, answer2, answer3, answerc};
           }
         })
 
-        if(!value.question || !value.answer1 || !value.answer2 || !value.answer3) return
+        if(!value.question || !value.answer1 || !value.answer2 || !value.answer3 || !value.answerc) return
         
         const newList = [
           ...listQuestions,

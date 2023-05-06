@@ -1,14 +1,14 @@
 import { useState } from "react"
-import ListQuestions from "./assets/components/ListQuestions";
+import ListQuestion from "./assets/components/ListQuestion";
 import NavButton from "./assets/components/NavButton";
 import ClearListButton from "./assets/components/ClearListButton";
 import NewQuestionButton from "./assets/components/NewQuestionButton";
 
 function App() {
-  const [pantalla, setPantalla] = useState("menu");
+  const [pantalla, setPantalla] = useState("menu")
 
   const [listQuestions, setListQuestions] = useState(
-    JSON.parse(localStorage.getItem("listItems")) || []
+    JSON.parse(localStorage.getItem("listQuestions")) || []
   )
 
   return (
@@ -53,12 +53,10 @@ function App() {
             </div>
             <div>
               {listQuestions.map((item) => (
-                <ListQuestions
-                  id={item.id}
-                  question={item.question}
-                  answer1={item.answer1}
-                  answer2={item.answer2}
-                  answer3={item.answer3}
+                <ListQuestion
+                  item={item}
+                 listQuestions={listQuestions}
+                 setListQuestions={setListQuestions}
                 />
               ))}
             </div>
@@ -71,6 +69,7 @@ function App() {
           </div>
         )
       }
+
       {
         pantalla === "jugar" && (
           <div>

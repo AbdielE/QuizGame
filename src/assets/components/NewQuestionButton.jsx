@@ -77,7 +77,7 @@ const NewQuestionButton = ({listQuestions,setListQuestions}) => {
   return (
     <button 
         type="button" 
-        class="btn btn-outline-primary"
+        class="btn btn-outline-success btn-lg mt-4 mb-4 me-1"
         onClick={newQuestionModal}>
         <i class="bi bi-plus-circle"></i>
     </button>

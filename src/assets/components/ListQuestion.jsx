@@ -89,9 +89,27 @@ const ListQuestion = ({
     setListQuestions(newList);
   }
 
+  const cloneQuestion = () => {
+    const newList = [
+      ...listQuestions,
+      {
+        ...item,
+        id: uuidv4(),
+      }
+    ];
+    localStorage.setItem("listItems", JSON.stringify(newList));
+    setListQuestions(newList);
+  }
+
+  const deleteQuestion = () => {
+    const newList = listQuestions.filter(item => item.id !== id);
+    localStorage.setItem("listQuestions", JSON.stringify(newList));
+    setListQuestions(newList);
+  }
+
   return (
     <div className='row'>
-      <h4 class="text-primary text-start">Pregunta</h4>
+      <h4 class="text-primary text-start">Question</h4>
 
       <div className="d-flex justify-content-between">
         <div
@@ -102,24 +120,30 @@ const ListQuestion = ({
         <div className="col-8 col-md-3 btn-group btn-group-sm" role="group">
           <button
             type="button"
-            class="btn btn-outline-primary"
+            class="btn btn-outline-success"
+            title="Edit"
             onClick={editListQuestion}>
             <i class="bi bi-pencil-square"></i>
           </button>
+
           <button
             type="button"
-            class="btn btn-outline-primary">
+            class="btn btn-outline-primary"
+            title="Clone"
+            onClick={cloneQuestion}>
             <i class="bi bi-files"></i>
           </button>
           <button
             type="button"
-            class="btn btn-outline-danger">
+            class="btn btn-outline-danger"
+            title="Delete"
+            onClick={deleteQuestion}>
             <i class="bi bi-trash2-fill"></i>
           </button>
         </div>
       </div>
       <br />
-      <h4 class="text-primary">Respuestas</h4>
+      <h4 class="text-primary">Answers</h4>
       <div className="d-flex justify-content-around">
         <div>
           {

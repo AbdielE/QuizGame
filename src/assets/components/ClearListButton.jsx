@@ -20,7 +20,7 @@ const ClearListButton = ({setListQuestions}) => {
 
     return (
         <button 
-            className="btn btn-outline-danger me-1"
+            className="btn btn-outline-danger btn-lg mt-4 mb-4 me-1"
             type="button"
             onClick={clearList}
         >

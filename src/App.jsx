@@ -22,21 +22,23 @@ function App() {
       {
         pantalla === "menu" && (
           <div>
-            <h3>¿Qué desea hacer?</h3>
+            <h3 className="text-primary">What would you like to do?</h3>
             <br />
             <div className="d-flex justify-content-evenly">
               <NavButton
                 setPantalla={setPantalla}
+                color={"secondary"}
                 action={"capturar"}
                 icon={"file-earmark-text"}
-                text={"Capturar"}
+                text={"Capture"}
               />
               <a>   </a>
               <NavButton
                 setPantalla={setPantalla}
+                color={"warning"}
                 action={"jugar"}
                 icon={"controller"}
-                text={"Jugar"}
+                text={"Play"}
               />
             </div>
           </div>
@@ -46,22 +48,43 @@ function App() {
       {
         pantalla === "capturar" && (
           <div>
-            <h3>Escriba sus propias preguntas con las respuestas que guste.</h3>
+            <h3>Write your own questions with the answers you want.</h3>
             <div className="col text-end mt-2">
+              <NewQuestionButton
+                listQuestions={listQuestions}
+                setListQuestions={setListQuestions}
+              />
+              <NavButton
+                setPantalla={setPantalla}
+                color={"primary"}
+                action={"menu"}
+                icon={"house"}
+                text={"Home"}
+              />
               <ClearListButton setListQuestions={setListQuestions} />
-              <NewQuestionButton listQuestions={listQuestions} setListQuestions={setListQuestions} />
             </div>
             <div>
-              {listQuestions.map((item) => (
-                <ListQuestion
-                  item={item}
-                 listQuestions={listQuestions}
-                 setListQuestions={setListQuestions}
-                />
-              ))}
+              {
+                listQuestions.length === 0 && (
+                  <div>
+                    <h3>The list is empty...</h3>
+                    Please add a new question to start.
+                  </div>
+                )
+              }
+              {
+                listQuestions.map((item) => (
+                  <ListQuestion
+                    item={item}
+                    listQuestions={listQuestions}
+                    setListQuestions={setListQuestions}
+                  />
+                ))
+              }
             </div>
             <NavButton
               setPantalla={setPantalla}
+              color={"primary"}
               action={"menu"}
               icon={"house"}
               text={"Home"}
@@ -73,9 +96,10 @@ function App() {
       {
         pantalla === "jugar" && (
           <div>
-            <h3>Jugar</h3>
+            <h3>Answer the questions correctly</h3>
             <NavButton
               setPantalla={setPantalla}
+              color={"primary"}
               action={"menu"}
               icon={"house"}
               text={"Home"}

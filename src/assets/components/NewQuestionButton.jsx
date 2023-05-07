@@ -39,6 +39,7 @@ const NewQuestionButton = ({listQuestions,setListQuestions}) => {
               maxlength="100"
             />
             <select name="answerc" id="answerc" class="swal2-select" >
+              <option selected>Define the correct answer</option>
               <option value="answer1">Answer 1</option>
               <option value="answer2">Answer 2</option>
               <option value="answer3">Answer 3</option>

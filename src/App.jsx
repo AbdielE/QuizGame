@@ -3,6 +3,7 @@ import ListQuestion from "./assets/components/ListQuestion";
 import NavButton from "./assets/components/NavButton";
 import ClearListButton from "./assets/components/ClearListButton";
 import NewQuestionButton from "./assets/components/NewQuestionButton";
+import PlayQuiz from "./assets/components/PlayQuiz";
 
 function App() {
   const [pantalla, setPantalla] = useState("menu")
@@ -26,19 +27,21 @@ function App() {
             <br />
             <div className="d-flex justify-content-evenly">
               <NavButton
-                setPantalla={setPantalla}
+                setAction={setPantalla}
                 color={"secondary"}
+                margin={"mt-4 mb-4"}
                 action={"capturar"}
                 icon={"file-earmark-text"}
-                text={"Capture"}
+                title={"Capture"}
               />
               <a>   </a>
               <NavButton
-                setPantalla={setPantalla}
+                setAction={setPantalla}
                 color={"warning"}
+                margin={"mt-4 mb-4"}
                 action={"jugar"}
                 icon={"controller"}
-                text={"Play"}
+                title={"Play"}
               />
             </div>
           </div>
@@ -55,11 +58,12 @@ function App() {
                 setListQuestions={setListQuestions}
               />
               <NavButton
-                setPantalla={setPantalla}
+                setAction={setPantalla}
                 color={"primary"}
+                margin={"mt-4 mb-4"}
                 action={"menu"}
                 icon={"house"}
-                text={"Home"}
+                title={"Home"}
               />
               <ClearListButton setListQuestions={setListQuestions} />
             </div>
@@ -67,7 +71,7 @@ function App() {
               {
                 listQuestions.length === 0 && (
                   <div>
-                    <h3>The list is empty...</h3>
+                    <h3 className="text-danger">The list is empty...</h3>
                     Please add a new question to start.
                   </div>
                 )
@@ -83,11 +87,12 @@ function App() {
               }
             </div>
             <NavButton
-              setPantalla={setPantalla}
+              setAction={setPantalla}
               color={"primary"}
+              margin={"mt-4 mb-4"}
               action={"menu"}
               icon={"house"}
-              text={"Home"}
+              title={"Home"}
             />
           </div>
         )
@@ -96,14 +101,37 @@ function App() {
       {
         pantalla === "jugar" && (
           <div>
-            <h3>Answer the questions correctly</h3>
-            <NavButton
-              setPantalla={setPantalla}
-              color={"primary"}
-              action={"menu"}
-              icon={"house"}
-              text={"Home"}
-            />
+            <div className="d-flex justify-content-between">
+              <div className="mt-3">
+                <h3>Answer the questions correctly</h3>
+              </div>
+              <div>
+                <NavButton
+                  setAction={setPantalla}
+                  color={"primary"}
+                  margin={"mt-4 mb-4"}
+                  action={"menu"}
+                  icon={"house"}
+                  title={"Home"}
+                />
+              </div>
+            </div>
+            <div>
+              {
+                listQuestions.length === 0 && (
+                  <div>
+                    <h3 className="text-danger">The list is empty...</h3>
+                    Try again later.
+                  </div>
+                )
+              }
+              {
+                <PlayQuiz
+                  listQuestions={listQuestions}
+                  setPantalla={setPantalla}
+                />
+              }
+            </div>
           </div>
         )
       }

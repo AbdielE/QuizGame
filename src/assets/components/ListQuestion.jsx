@@ -110,7 +110,7 @@ const ListQuestion = ({
 
   return (
     <div className='row'>
-      <h4 class="text-primary text-start">Question</h4>
+      <h4 className="text-primary text-start">Question</h4>
 
       <div className="d-flex justify-content-between">
         <div
@@ -121,49 +121,49 @@ const ListQuestion = ({
         <div className="col-8 col-md-3 btn-group btn-group-sm" role="group">
           <button
             type="button"
-            class="btn btn-outline-success"
+            className="btn btn-outline-success"
             title="Edit"
             onClick={editListQuestion}>
-            <i class="bi bi-pencil-square"></i>
+            <i className="bi bi-pencil-square"></i>
           </button>
 
           <button
             type="button"
-            class="btn btn-outline-primary"
+            className="btn btn-outline-primary"
             title="Clone"
             onClick={cloneQuestion}>
-            <i class="bi bi-files"></i>
+            <i className="bi bi-files"></i>
           </button>
           <button
             type="button"
-            class="btn btn-outline-danger"
+            className="btn btn-outline-danger"
             title="Delete"
             onClick={deleteQuestion}>
-            <i class="bi bi-trash2-fill"></i>
+            <i className="bi bi-trash2-fill"></i>
           </button>
         </div>
       </div>
       <br />
-      <h4 class="text-primary">Answers</h4>
+      <h4 className="text-primary">Answers</h4>
       <div className="d-flex justify-content-around">
         <div>
           {
             answerc === "answer1" ?
-              <h4 class="border-bottom border-4 border-success text-success">{`${answer1}`}</h4> :
+              <h4 className="border-bottom border-4 border-success text-success">{`${answer1}`}</h4> :
               `${answer1}`
           }
         </div>
         <div>
           {
             answerc === "answer2" ?
-              <h4 class="border-bottom border-4 border-success text-success">{`${answer2}`}</h4> :
+              <h4 className="border-bottom border-4 border-success text-success">{`${answer2}`}</h4> :
               `${answer2}`
           }
         </div>
         <div>
           {
             answerc === "answer3" ?
-              <h4 class="border-bottom border-4 border-success text-success">{`${answer3}`}</h4> :
+              <h4 className="border-bottom border-4 border-success text-success">{`${answer3}`}</h4> :
               `${answer3}`
           }
         </div>

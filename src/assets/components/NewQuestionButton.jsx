@@ -69,7 +69,6 @@ const NewQuestionButton = ({listQuestions,setListQuestions}) => {
           {
               id: uuidv4(),
               ...value,
-              checked: false,
           }
       ]
       localStorage.setItem("listQuestions", JSON.stringify(newList));
@@ -78,9 +77,9 @@ const NewQuestionButton = ({listQuestions,setListQuestions}) => {
   return (
     <button 
         type="button" 
-        class="btn btn-outline-success btn-lg mt-4 mb-4 me-1"
+        className="btn btn-outline-success btn-lg mt-4 mb-4 me-1"
         onClick={newQuestionModal}>
-        <i class="bi bi-plus-circle"></i>
+        <i className="bi bi-plus-circle"></i>
     </button>
   )
 }

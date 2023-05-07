@@ -1,62 +1,114 @@
-import Swal from "sweetalert2";
-import NavButton from "./NavButton";
+import NavButtonClearListResults from "./NavButtonClearListResults";
 import AnswerButton from "./AnswerButton";
 import { useState } from "react";
+import ListResults from "./ListResults";
+import DivAciertos from "./DivAciertos";
 
-const ListQuestion = ({ listQuestions, setPantalla }) => {
+const PlayQuiz = ({
+  listQuestions,
+  setPantalla,
+}) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const [listResults, setListResults] = useState(
+    JSON.parse(sessionStorage.getItem("listResults")) || []
+  )
+
   return (
-    <div class="container text-center">
-      {currentIndex < listQuestions.length && (
-        <div>
-          <h4 class="text-primary text-start">Question {currentIndex + 1}</h4>
-          <div className="d-flex justi  fy-content-between">
-            <div
-              className="col-8 col-md-6 text-start">
-              <h5>{listQuestions[currentIndex].question}</h5>
+    <div className="container text-center">
+      {
+        currentIndex < listQuestions.length && (
+
+          <div>
+            <h4 className="text-primary text-start">Question {currentIndex + 1}</h4>
+            <div className="d-flex justify-content-between">
+              <div
+                className="col-8 col-md-6 text-start">
+                <h5>{listQuestions[currentIndex].question}</h5>
+              </div>
             </div>
-          </div>
-          <br />
-          <h4 class="text-primary">Answers</h4>
-          <div class="container text-center">
-            <div class="d-grid gap-2 col-6 mx-auto">
-              <AnswerButton
-                setAction={setCurrentIndex}
-                color={"success"}
-                mt={"mt-0"}
-                action={currentIndex + 1}
-                text={listQuestions[currentIndex].answer1}
-              />
-              <AnswerButton
-                setAction={setCurrentIndex}
-                color={"success"}
-                mt={"mt-0"}
-                action={currentIndex + 1}
-                text={listQuestions[currentIndex].answer2}
-              />
-              <AnswerButton
-                setAction={setCurrentIndex}
-                color={"success"}
-                mt={"mt-0"}
-                action={currentIndex + 1}
-                text={listQuestions[currentIndex].answer3}
-              />
+            <br />
+            <h4 className="text-primary">Answers</h4>
+            <div className="container text-center">
+              <div className="d-grid gap-2 col-6 mx-auto">
+                <AnswerButton
+                  listResults={listResults}
+                  setAction={setCurrentIndex}
+                  setListResults={setListResults}
+                  action={currentIndex + 1}
+                  text={listQuestions[currentIndex].answer1}
+                  color={"success"}
+                  mt={"mt-0"}
+                  answer={"answer1"}
+                  question={listQuestions[currentIndex].question}
+                  answerc={listQuestions[currentIndex].answerc}
+                />
+                <AnswerButton
+                  listResults={listResults}
+                  setAction={setCurrentIndex}
+                  setListResults={setListResults}
+                  action={currentIndex + 1}
+                  text={listQuestions[currentIndex].answer2}
+                  color={"success"}
+                  mt={"mt-0"}
+                  answer={"answer2"}
+                  question={listQuestions[currentIndex].question}
+                  answerc={listQuestions[currentIndex].answerc}
+                />
+                <AnswerButton
+                  listResults={listResults}
+                  setAction={setCurrentIndex}
+                  setListResults={setListResults}
+                  action={currentIndex + 1}
+                  text={listQuestions[currentIndex].answer3}
+                  color={"success"}
+                  mt={"mt-0"}
+                  answer={"answer3"}
+                  question={listQuestions[currentIndex].question}
+                  answerc={listQuestions[currentIndex].answerc}
+                />
+              </div>
+              <br />
+              <h6 className="text-danger text-center">{listQuestions.length - (currentIndex + 1)} remaining</h6>
             </div>
-            <h6 class="text-danger text-start">{listQuestions.length - (currentIndex + 1)} remaining</h6>
+            <hr />
           </div>
-          <hr />
-        </div>
-      )}
+        )
+      }
+
       {
         currentIndex >= listQuestions.length && (
           <div>
             <h4>Results</h4>
-            <NavButton
+            <div className="d-flex justify-content-between">
+              <div
+                className="col-6 col-md-6 text-center">
+                <h4 className="text-primary text-center">Question</h4>
+              </div>
+              <div
+                className="col-6 col-md-6 text-center">
+                <h4 className="text-primary">Your Answer</h4>
+              </div>
+            </div>
+            <br />
+            {
+              listResults.map((item) => (
+                <ListResults
+                  item={item}
+                />
+              ))
+            }
+            <br />
+            <div>
+              <DivAciertos
+                listResults={listResults}
+              />
+            </div>
+            <NavButtonClearListResults
               setAction={setPantalla}
               color={"primary"}
-              margin={"mt-2 mb-2"}
+              margin={"mt-4 mb-4"}
               action={"menu"}
               icon={"house"}
               title={"Home"}
@@ -68,4 +120,4 @@ const ListQuestion = ({ listQuestions, setPantalla }) => {
   )
 }
 
-export default ListQuestion;
+export default PlayQuiz;

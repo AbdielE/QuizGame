@@ -4,6 +4,7 @@ import NavButton from "./assets/components/NavButton";
 import ClearListButton from "./assets/components/ClearListButton";
 import NewQuestionButton from "./assets/components/NewQuestionButton";
 import PlayQuiz from "./assets/components/PlayQuiz";
+import NavButtonClearListResults from "./assets/components/NavButtonClearListResults";
 
 function App() {
   const [pantalla, setPantalla] = useState("menu")
@@ -106,7 +107,7 @@ function App() {
                 <h3>Answer the questions correctly</h3>
               </div>
               <div>
-                <NavButton
+                <NavButtonClearListResults
                   setAction={setPantalla}
                   color={"primary"}
                   margin={"mt-4 mb-4"}

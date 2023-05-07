@@ -1,6 +1,8 @@
-const NavButton = ({ setAction, color, margin, action, icon, title}) => {
-  const handleCaptureButton = () => {
+const NavButtonClearListResults = ({ setAction, color, margin, action, icon, title}) => {
+  const handleCaptureButton = async () => {
     setAction(action)
+
+    sessionStorage.removeItem("listResults");
   }
   
   return (
@@ -14,4 +16,4 @@ const NavButton = ({ setAction, color, margin, action, icon, title}) => {
   )
 }
 
-export default NavButton
+export default NavButtonClearListResults
